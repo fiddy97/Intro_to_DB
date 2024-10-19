@@ -18,7 +18,7 @@ def create_database():
 
             print("Database 'alx_book_store' created successfully!")
 
-    except Error as e:
+    except mysql.connector.Error as e:
         # Handle MySQL errors
         print(f"MySQL Error: {e}")
     except Exception as e:
@@ -26,9 +26,9 @@ def create_database():
         print(f"Error: {e}")
     finally:
         # Close cursor and connection
-        if cursor:
+        if 'cursor' in locals() and cursor:
             cursor.close()
-        if connection and connection.is_connected():
+        if 'connection' in locals() and connection.is_connected():
             connection.close()
 
 if __name__ == "__main__":
